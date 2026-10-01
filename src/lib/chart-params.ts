@@ -11,6 +11,8 @@ export const PERIODS = [
   { value: "12", label: "Last year" },
 ];
 
+const DEFAULT_PERIOD = "12";
+
 export type ChartParams = { rolling: number; period: string };
 
 // The URL is the source of truth; anything unrecognized falls back to the defaults
@@ -21,6 +23,6 @@ export function parseChartParams(
   const period = PERIODS.find((option) => option.value === searchParams.period);
   return {
     rolling: ROLLING_WINDOWS.includes(rolling) ? rolling : ROLLING_WINDOWS[0],
-    period: period ? period.value : PERIODS[0].value,
+    period: period ? period.value : DEFAULT_PERIOD,
   };
 }
