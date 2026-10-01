@@ -19,21 +19,8 @@ export function ChartControls({ rolling, period }: ChartParams) {
       replace
       scroll={false}
       onChange={(event) => event.currentTarget.requestSubmit()}
-      className="flex flex-wrap items-center justify-between gap-4"
+      className="space-y-4"
     >
-      <RadioGroup
-        name="rolling"
-        aria-label="Rolling average"
-        defaultValue={rolling}
-        className="flex w-auto gap-4"
-      >
-        {ROLLING_WINDOWS.map((size) => (
-          <Label key={size}>
-            <RadioGroupItem value={size} />
-            Last {size} games
-          </Label>
-        ))}
-      </RadioGroup>
       <NativeSelect
         name="period"
         aria-label="Time period"
@@ -45,6 +32,24 @@ export function ChartControls({ rolling, period }: ChartParams) {
           </NativeSelectOption>
         ))}
       </NativeSelect>
+      <div className="space-y-2">
+        <p id="rolling-label" className="text-sm font-medium">
+          Rolling average
+        </p>
+        <RadioGroup
+          name="rolling"
+          aria-labelledby="rolling-label"
+          defaultValue={rolling}
+          className="flex w-auto gap-4"
+        >
+          {ROLLING_WINDOWS.map((size) => (
+            <Label key={size}>
+              <RadioGroupItem value={size} />
+              Last {size} games
+            </Label>
+          ))}
+        </RadioGroup>
+      </div>
     </Form>
   );
 }
