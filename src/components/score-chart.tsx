@@ -41,9 +41,12 @@ function getChartRows(bowlers: Bowler[], rollingGames: number): NightRow[] {
       row[`${bowler.name}-night`] = average(
         chronological.filter((other) => other.date === game.date),
       );
-      row[bowler.name] = average(
-        chronological.slice(Math.max(0, i + 1 - rollingGames), i + 1),
-      );
+      // Skip the rolling average until there are enough games to fill it
+      if (i + 1 >= rollingGames) {
+        row[bowler.name] = average(
+          chronological.slice(i + 1 - rollingGames, i + 1),
+        );
+      }
       nights.set(game.date, row);
     });
   }
