@@ -1,0 +1,10 @@
+services:
+  weeres-bowling-scores:
+    build: .
+    container_name: weeres-bowling-scores
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: proxy
