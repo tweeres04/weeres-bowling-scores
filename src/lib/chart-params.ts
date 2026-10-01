@@ -1,8 +1,5 @@
 import { WINDOWS } from "@/lib/scores";
 
-// Longest window first, and the default
-export const ROLLING_WINDOWS = WINDOWS.toReversed();
-
 export const PERIODS = [
   { value: "all", label: "All time" },
   { value: "1", label: "Last month" },
@@ -22,7 +19,7 @@ export function parseChartParams(
   const rolling = Number(searchParams.rolling);
   const period = PERIODS.find((option) => option.value === searchParams.period);
   return {
-    rolling: ROLLING_WINDOWS.includes(rolling) ? rolling : ROLLING_WINDOWS[0],
+    rolling: WINDOWS.includes(rolling) ? rolling : WINDOWS[0],
     period: period ? period.value : DEFAULT_PERIOD,
   };
 }

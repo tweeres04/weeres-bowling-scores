@@ -7,7 +7,8 @@ import {
   NativeSelectOption,
 } from "@/components/ui/native-select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { PERIODS, ROLLING_WINDOWS, type ChartParams } from "@/lib/chart-params";
+import { PERIODS, type ChartParams } from "@/lib/chart-params";
+import { WINDOWS } from "@/lib/scores";
 
 // A GET form: submitting writes the fields into the URL (?rolling=20&period=3).
 // `replace` keeps control changes out of history, so the URL only changes
@@ -42,7 +43,7 @@ export function ChartControls({ rolling, period }: ChartParams) {
           defaultValue={rolling}
           className="flex w-auto gap-4"
         >
-          {ROLLING_WINDOWS.map((size) => (
+          {WINDOWS.map((size) => (
             <Label key={size}>
               <RadioGroupItem value={size} />
               Last {size} games
